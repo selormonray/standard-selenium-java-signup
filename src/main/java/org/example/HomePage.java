@@ -10,8 +10,13 @@ public class HomePage extends PageObject{
         this.driver = driver;
     }
 
-      private final By createEmailInput = By.id("email_create");
+    private final By createEmailInput = By.id("email_create");
     private final By createAccountButton = By.id("SubmitCreate");
+
+    public HomePage openHomepage() {
+        driver.get("http://www.automationpractice.pl/index.php?controller=authentication&back=my-account#account-creation");
+        return this;
+    }
 
     //        enter first name
     private WebElement getCreateEmailInput() {

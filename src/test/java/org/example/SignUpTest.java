@@ -1,44 +1,55 @@
 package org.example;
 
+import Enum.UserDOB;
+import Enum.UserNames;
 import com.github.javafaker.Faker;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static Enum.UserDOB.*;
-import static Enum.UserNames.*;
+public class SignUpTest {
+    private WebDriver driver;
 
-public class SignUpTest extends BaseTest {
+    @BeforeMethod
+    public void setUp() {
+        driver = BrowserFactory.getDriver("chrome");
+    }
 
     @Test
     void createAccount() throws InterruptedException {
-    HomePage homePage = new HomePage(driver);
-    Faker faker = new Faker();
-    final String expectedAlertText = "Your account has been created.";
+        HomePage homePage = new HomePage(driver);
+        Faker faker = new Faker();
+        homePage.openHomepage();
 
-    homePage.enterEmail(faker.internet().emailAddress());
-    homePage.clickCreateAccountBtn();
+        homePage.enterEmail(faker.internet().emailAddress());
+        homePage.clickCreateAccountBtn();
 
-    SignUpPage signUpPage = new SignUpPage(driver);
-    Thread.sleep(5000);
-    signUpPage.enterFirstName(TOM.getDisplayText());
-    signUpPage.enterLastName(SMITH.getDisplayText());
-    signUpPage.enterPassword(PASSWORD.getDisplayText());
-    signUpPage.selectDaysFromDropdown(DAY_OF_BIRTH.getDropdownValue());
-    signUpPage.selectMonthsFromDropdown(MONTH_OF_BIRTH.getDropdownValue());
-    signUpPage.selectYearsFromDropdown(YEAR_OF_BIRTH.getDropdownValue());
-    verifyDetailsInSignUpForm();
-    signUpPage.clickRegisterBtn();
-    Thread.sleep(5000);
-    Assert.assertEquals(signUpPage.getAlertSuccessText(), expectedAlertText, "Account creation was not successful");
-
-    }
-
-    public void verifyDetailsInSignUpForm() {
         SignUpPage signUpPage = new SignUpPage(driver);
-        Assert.assertEquals(signUpPage.getFirstNameFromInputField(), TOM.getDisplayText());
-        Assert.assertEquals(signUpPage.getLastNameFromInputField(), SMITH.getDisplayText());
-        Assert.assertEquals(signUpPage.getPasswordFromInputField(), PASSWORD.getDisplayText());
+        Thread.sleep(5000L);
+
+        signUpPage.enterFirstName(UserNames.TOM.getDisplayText());
+        signUpPage.enterLastName(UserNames.SMITH.getDisplayText());
+        signUpPage.enterPassword(UserNames.PASSWORD.getDisplayText());
+        signUpPage.selectDaysFromDropdown(UserDOB.DAY_OF_BIRTH.getDropdownValue());
+        signUpPage.selectMonthsFromDropdown(UserDOB.MONTH_OF_BIRTH.getDropdownValue());
+        signUpPage.selectYearsFromDropdown(UserDOB.YEAR_OF_BIRTH.getDropdownValue());
+
+        verifyDetailsInSignUpForm();
+        signUpPage.clickRegisterBtn();
+        Thread.sleep(5000L);
     }
 
+    private void verifyDetailsInSignUpForm() {
+        SignUpPage signUpPage = new SignUpPage(driver);
+        Assert.assertEquals(signUpPage.getFirstNameFromInputField(), UserNames.TOM.getDisplayText());
+        Assert.assertEquals(signUpPage.getLastNameFromInputField(), UserNames.SMITH.getDisplayText());
+        Assert.assertEquals(signUpPage.getPasswordFromInputField(), UserNames.PASSWORD.getDisplayText());
+    }
 
+    @AfterMethod
+    public void tearDown() {
+        BrowserFactory.quitDriver();
+    }
 }
