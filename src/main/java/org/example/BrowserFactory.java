@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BrowserFactory {
     private static WebDriver driver;
-    private static final String BASE_URL = "http://www.automationpractice.pl/index.php?controller=authentication&back=my-account#account-creation";
+    static final String BASE_URL = "http://www.automationpractice.pl/index.php?controller=authentication&back=my-account#account-creation";
 
     public static WebDriver getDriver(String browser) {
         switch (browser.toLowerCase()) {
