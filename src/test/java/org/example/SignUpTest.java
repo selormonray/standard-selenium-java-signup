@@ -21,7 +21,7 @@ public class SignUpTest {
     void createAccount() throws InterruptedException {
         HomePage homePage = new HomePage(driver);
         Faker faker = new Faker();
-        homePage.openHomepage();
+        homePage.openHomePage();
 
         homePage.enterEmail(faker.internet().emailAddress());
         homePage.clickCreateAccountBtn();
