@@ -149,6 +149,11 @@ public class SignUpPage extends PageObject{
        return this;
     }
 
+    public void waitForPageLoad() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(firstNameInput));
+        wait.until(ExpectedConditions.elementToBeClickable(registerBtn));
+    }
+
 
 
 }
