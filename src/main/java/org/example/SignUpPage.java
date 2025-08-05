@@ -154,6 +154,11 @@ public class SignUpPage extends PageObject{
         wait.until(ExpectedConditions.elementToBeClickable(registerBtn));
     }
 
+    public void waitForRegistrationCompletion() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(alertTextElement));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(alertTextElement, "Your account has been created."));
+    }
+
 
 
 }
