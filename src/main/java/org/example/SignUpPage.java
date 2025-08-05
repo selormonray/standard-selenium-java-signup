@@ -4,12 +4,16 @@ package org.example;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SignUpPage extends PageObject{
+    private final WebDriverWait wait;
 
-    public SignUpPage (WebDriver driver) {
+    public SignUpPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
     }
 
 
@@ -144,4 +148,7 @@ public class SignUpPage extends PageObject{
        getAlertElement().getText().trim();
        return this;
     }
+
+
+
 }
