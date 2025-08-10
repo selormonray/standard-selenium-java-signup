@@ -39,6 +39,12 @@ public class SignUpTest {
         // Verify entered details
         verifyDetailsInSignUpForm();
 
+        // Complete registration
+        signUpPage.clickRegisterBtn();
+        signUpPage.waitForRegistrationCompletion();
+    }
+
+
 
 
     @AfterMethod
