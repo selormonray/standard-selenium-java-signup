@@ -44,6 +44,15 @@ public class SignUpTest {
         signUpPage.waitForRegistrationCompletion();
     }
 
+    private void fillUserDetails() {
+        signUpPage.enterFirstName(UserNames.TOM.getDisplayText())
+                .enterLastName(UserNames.SMITH.getDisplayText())
+                .enterPassword(UserNames.PASSWORD.getDisplayText())
+                .selectDaysFromDropdown(UserDOB.DAY_OF_BIRTH.getDropdownValue())
+                .selectMonthsFromDropdown(UserDOB.MONTH_OF_BIRTH.getDropdownValue())
+                .selectYearsFromDropdown(UserDOB.YEAR_OF_BIRTH.getDropdownValue());
+    }
+
 
 
 
