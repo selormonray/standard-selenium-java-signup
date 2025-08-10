@@ -53,7 +53,11 @@ public class SignUpTest {
                 .selectYearsFromDropdown(UserDOB.YEAR_OF_BIRTH.getDropdownValue());
     }
 
-
+    private void verifyDetailsInSignUpForm() {
+        Assert.assertEquals(signUpPage.getFirstNameFromInputField(), UserNames.TOM.getDisplayText(), "First name mismatch");
+        Assert.assertEquals(signUpPage.getLastNameFromInputField(), UserNames.SMITH.getDisplayText(), "Last name mismatch");
+        Assert.assertEquals(signUpPage.getPasswordFromInputField(), UserNames.PASSWORD.getDisplayText(), "Password mismatch");
+    }
 
 
     @AfterMethod
