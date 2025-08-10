@@ -27,6 +27,11 @@ public class SignUpTest {
     }
 
     @Test
+    void shouldCreateNewUserAccount() {
+        // Start sign up process
+        homePage.openHomePage()
+                .enterEmail(userEmail)
+                .clickCreateAccountBtn();
 
 
     @AfterMethod
