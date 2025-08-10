@@ -32,6 +32,13 @@ public class SignUpTest {
         homePage.openHomePage()
                 .enterEmail(userEmail)
                 .clickCreateAccountBtn();
+        // Fill registration form
+        signUpPage.waitForPageLoad();
+        fillUserDetails();
+
+        // Verify entered details
+        verifyDetailsInSignUpForm();
+
 
 
     @AfterMethod
